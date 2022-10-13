@@ -1,0 +1,10 @@
+<swiper #swiper [config]="config">
+  <ng-template swiperSlide>
+    Slide 12
+  </ng-template>
+  <ng-template swiperSlide>Slide 2</ng-template>
+  <ng-template swiperSlide>Slide 3</ng-template>
+</swiper>
+<hr>
+<ion-button color="primary" (click)="slideNext()">Next slide</ion-button>
+<ion-button color="secondary" (click)="slidePrev()">Prev slide</ion-button>

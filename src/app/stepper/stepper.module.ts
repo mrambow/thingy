@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SwiperModule } from 'swiper/angular';
-import { StepperPage } from './stepper-page.component';
+import { StepperComponent } from './stepper-component/stepper.component';
 
 @NgModule({
+  declarations: [
+    StepperComponent
+  ],
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
     SwiperModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: StepperPage
-      }
-    ])
   ],
-  declarations: [StepperPage]
+  exports: [
+    StepperComponent
+  ]
 })
-export class StepperModule {}
+export class StepperModule { }

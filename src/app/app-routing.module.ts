@@ -8,12 +8,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'stepper',
-    loadChildren: () => import('./stepper/stepper.module').then( m => m.StepperModule)
-  },
-  {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'stepper',
+    loadChildren: () => import('./stepper-test/stepper-test.module').then( m => m.StepperTestPageModule)
   }
 ];
 
