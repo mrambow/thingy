@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { IonicSlides } from '@ionic/angular';
 import SwiperCore, { A11y, Keyboard, Navigation, Pagination, Scrollbar, SwiperOptions, Zoom } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
@@ -13,6 +13,12 @@ SwiperCore.use( [
   IonicSlides,
 ] );
 
+export class StepContent {
+  template: TemplateRef<ElementRef>;
+  canGoNext: () => boolean;
+  finalizeStep: () => void;
+}
+
 @Component( {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ionic-stepper',
@@ -20,30 +26,33 @@ SwiperCore.use( [
   styleUrls: ['./stepper.component.scss'],
   encapsulation: ViewEncapsulation.None,
 } )
-export class StepperComponent implements OnInit {
+export class StepperComponent {
+  @Input() steps: StepContent[];
   @ViewChild(
     'swiper',
     { static: false } ) swiper?: SwiperComponent;
   config: SwiperOptions = {
     keyboard: true,
     pagination: { type: 'fraction' },
+    navigation: {
+      enabled: false,
+    },
     zoom: true,
-    navigation: true, // direction: 'vertical',
-    scrollbar: { draggable: true },
+    scrollbar: { draggable: false },
+    allowTouchMove: false,
   };
 
   constructor() {
   }
 
   slideNext() {
+    const stepContent = this.steps[this.swiper.swiperRef.activeIndex];
+    const canGoNext = stepContent.canGoNext();
+    if ( !canGoNext ) {
+      return;
+    }
+
+    stepContent.finalizeStep();
     this.swiper.swiperRef.slideNext( 100 );
   }
-
-  slidePrev() {
-    this.swiper.swiperRef.slidePrev( 100 );
-  }
-
-  ngOnInit(): void {
-  }
-
 }
