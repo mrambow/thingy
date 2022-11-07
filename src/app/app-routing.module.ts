@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'stepper',
     loadChildren: () => import('./stepper-test/stepper-test.module').then( m => m.StepperTestPageModule)
+  },
+  {
+    path: 'modals',
+    loadChildren: () => import('./modals/modals.module').then( m => m.ModalsModule)
   }
 ];
 
