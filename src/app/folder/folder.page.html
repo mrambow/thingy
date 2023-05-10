@@ -16,6 +16,7 @@
 
   <div id="container">
     <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button (click)="request()">request camera permission</ion-button>
+    <ion-button (click)="getPhoto()">getPhoto</ion-button>
   </div>
 </ion-content>
