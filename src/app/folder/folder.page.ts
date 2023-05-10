@@ -16,10 +16,6 @@ export class FolderPage implements OnInit {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
-  request() {
-return Camera.checkPermissions();
-  }
-
   getPhoto() {
   return Camera.getPhoto({
     source: CameraSource.Photos,
